@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Adv. Rajan Menon",
+    "specialization": "Property Law",
+    "phone": "9876543210",
+    "location": "Kochi"
+  },
+  {
+    "name": "Adv. Priya Nair",
+    "specialization": "Contract Law",
+    "phone": "9845123456",
+    "location": "Trivandrum"
+  },
+  {
+    "name": "Adv. Suresh Kumar",
+    "specialization": "Rental Law",
+    "phone": "9812345678",
+    "location": "Calicut"
+  },
+  {
+    "name": "Adv. Anjali Das",
+    "specialization": "Civil Law",
+    "phone": "9856781234",
+    "location": "Thrissur"
+  },
+  {
+    "name": "Adv. Mohammed Ashraf",
+    "specialization": "Property Law",
+    "phone": "9823456789",
+    "location": "Kannur"
+  }
+]
