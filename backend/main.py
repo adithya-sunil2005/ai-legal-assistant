@@ -5,7 +5,7 @@ import pdfplumber
 import io
 
 # Import all agents
-from backend.agents.document_agent import extract_and_explain
+from backend.agents.document_agent import extract_text_from_pdf
 from backend.agents.legal_terms_agent import flag_risky_clauses
 from backend.agents.solutions_agent import get_solutions
 from backend.agents.chat_agent import answer_question
@@ -37,7 +37,7 @@ async def analyze_document(file: UploadFile = File(...)):
     document_store["text"] = text
     
     # Run all agents
-    clauses = extract_and_explain(text)
+    clauses = extract_text_from_pdf(text)
     risky_clauses = flag_risky_clauses(clauses)
     solutions = get_solutions(risky_clauses)
     
