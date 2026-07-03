@@ -3,7 +3,7 @@ import os
 
 def flag_risky_clauses(text):
     # Load risk terms
-    risk_terms_path = os.path.join(os.path.dirname(__file__), '..', 'risk_terms.json')
+    risk_terms_path = os.path.join(os.path.dirname(__file__), 'risk_terms.json')
     with open(risk_terms_path, 'r') as f:
         risk_terms = json.load(f)
     

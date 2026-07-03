@@ -1,25 +1,13 @@
 import os
-from openai import OpenAI
+from groq import Groq
 
-# OpenAI client setup
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
-# Answer user questions about the document
 def answer_question(question, document_text):
     response = client.chat.completions.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {
-                "role": "system",
-                "content": "You are a legal assistant. Answer questions based only on the provided document. Give simple, clear answers."
-            },
-            {
-                "role": "user",
-                "content": f"Document: {document_text}\n\nQuestion: {question}\n\nAnswer in simple plain language."
-            }
-        ]
+        model="llama-3.1-8b-instant",
+        messages=[{"role": "user", "content": f"Document: {document_text}\n\nQuestion: {question}\n\nAnswer in simple plain language."}]
     )
-    
     return {
         "question": question,
         "answer": response.choices[0].message.content
