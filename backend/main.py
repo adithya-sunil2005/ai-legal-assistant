@@ -1,13 +1,16 @@
+from dotenv import load_dotenv
+import os
+load_dotenv()
+
 from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import pdfplumber
 import io
 
-# Import all agents
 from backend.agents.document_agent import extract_text_from_pdf
 from backend.agents.legal_terms_agent import flag_risky_clauses
-from backend.agents.solutions_agent import get_solutions
+from backend.agents.solution_agent import get_solutions
 from backend.agents.chat_agent import answer_question
 
 app = FastAPI()
@@ -26,23 +29,17 @@ document_store = {}
 # Route 1: Upload PDF and analyze
 @app.post("/analyze")
 async def analyze_document(file: UploadFile = File(...)):
-    # Extract text from PDF
     contents = await file.read()
-    with pdfplumber.open(io.BytesIO(contents)) as pdf:
-        text = ""
-        for page in pdf.pages:
-            text += page.extract_text()
     
-    # Save text for chat later
+    text = extract_text_from_pdf(contents)
+    
     document_store["text"] = text
     
-    # Run all agents
-    clauses = extract_text_from_pdf(text)
-    risky_clauses = flag_risky_clauses(clauses)
+    risky_clauses = flag_risky_clauses(text)
     solutions = get_solutions(risky_clauses)
     
     return {
-        "clauses": clauses,
+        "text": text[:500],
         "risky_clauses": risky_clauses,
         "solutions": solutions
     }
