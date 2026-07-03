@@ -1,0 +1,22 @@
+{
+    "high": [
+        "terminate without notice",
+        "unlimited liability",
+        "indemnify",
+        "waive rights",
+        "penalty"
+    ],
+    "medium": [
+        "automatic renewal",
+        "late fee",
+        "confidentiality",
+        "exclusive",
+        "non-refundable"
+    ],
+    "low": [
+        "payment",
+        "delivery",
+        "contact",
+        "address"
+    ]
+}
